@@ -12,7 +12,14 @@ public class Car {
     private String registrationNumber;
     private final int numberOfSeats;
 
-
+    public Car() {
+        productionCountry = null;
+        brand = null;
+        model = null;
+        productionYear = 0;
+        bodyType = null;
+        numberOfSeats = 0;
+    }
 
     public Car(String brand, String model, double engineVolume, String color, int productionYear,
                String productionCountry, String transmission, String bodyType, String registrationNumber, int numberOfSeats) {
@@ -76,6 +83,23 @@ public class Car {
         return registrationNumber;
     }
 
+    public class Key {
+
+        private final int unlock;
+        private final int engineOperation;
+
+        public Key (int unlock, int engineOperation) {
+            this.unlock = (unlock != 0 && unlock != 1) ? 0 : unlock;
+            this.engineOperation = (engineOperation != 0 && engineOperation != 1) ? 0 : engineOperation;
+        }
+        void operation (){
+            if (this.unlock == 0) System.out.println("\t Двери закрыты.");
+            if (this.unlock == 1) System.out.println("\t Двери открыты.");
+            if (this.engineOperation == 0 ) System.out.println("\t Двигатель заглушен.");
+            if (this.engineOperation == 1) System.out.println("\t Двигатель заведён.");
+        }
+    }
+
     public String changeTires (int month) {
         if (month >= 4 && month <= 11) {
             return "летние шины";
@@ -93,5 +117,11 @@ public class Car {
                 + ".\n" + "\t год выпуска - " + productionYear + " г.\n" + "\t страна сборки - " + productionCountry + ".\n" + "\t коробка передач - " + transmission
                 + "\n" + "\t кузов - " + bodyType + "\n" + "\t регистрационный номер - " + registrationNumber + "\n" + "\t количество мест - " + numberOfSeats
                  + ".";
+    }
+
+
+    public void unlockStarted () {
+        Key key = new Key(0,0);
+        key.operation();
     }
 }
